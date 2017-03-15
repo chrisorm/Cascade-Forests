@@ -17,7 +17,8 @@ class deepForestCv(object):
         pass
     
     def fit(self, X,y):
-        max_layers = 10
+        """implement the layer size cross validation method"""
+        
         last_score = -np.inf
         for i in range(1, max_layers+1):
             new_clf = deepForest(n_layers=i)
