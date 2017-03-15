@@ -18,9 +18,10 @@ class deepForest(ClassifierMixin,BaseEstimator):
         self.layerScores=[]
     
     def fit(self, X,y):
+        """Build up the network and fit it"""
         for layer in range(self.n_layers):
-            self.layers.append(deepForestLayer(self.width))
-        previous_pred = np.empty((X.shape[0],0))
+            self.layers.append(deepForestLayer(self.width)) #instatiate our network
+        previous_pred = np.empty((X.shape[0],0)) 
         for layer in self.layers:
             newX=np.concatenate([X,previous_pred], axis=1)
             layer.fit(newX,y)
@@ -28,6 +29,7 @@ class deepForest(ClassifierMixin,BaseEstimator):
             
             
     def predict_proba(self, X):
+        """predict probabilities of the classes"""
         previous_pred = np.empty((X.shape[0],0))
         for layer in self.layers:
             newX=np.concatenate([X,previous_pred], axis=1)
@@ -35,4 +37,5 @@ class deepForest(ClassifierMixin,BaseEstimator):
         return previous_pred
     
     def predict(self,X):
+        """Predict class label"""
         return np.argmax(self.predict_proba(X), axis=1)
