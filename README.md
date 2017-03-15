@@ -5,4 +5,6 @@ This is a WIP, intended to explore the above paper. It is not expected to be as 
 
 Please feel free to point out any bugs.
 
+maincv.py is a sample script to run the code. 
+
 Enjoy!
